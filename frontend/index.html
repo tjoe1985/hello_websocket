@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Go WebSocket Tutorial</title>
+</head>
+<body>
+<h2>Hello Worldssss</h2>
+
+<!--<input id="input" type="text" />-->
+<!--<button onclick="send()">Send</button>-->
+<h1 id="message-json"></h1>
+<br>
+<div>
+    <h4 id="message-text"></h4>
+</div>
+
+<script>
+    // let socket = new WebSocket("ws://127.0.0.1:8080/echo");
+    // console.log("Attempting Connection...");
+    //
+    // socket.onopen = () => {
+    //     console.log("Successfully Connected");
+    //     socket.send("Hi From the Client!")
+    // };
+    // socket.onmessage = ev => {
+    //     console.log("from on message ==> ",ev.data)
+    // }
+    //
+    // socket.onclose = event => {
+    //     console.log("Socket Closed Connection: ", event.data);
+    //     socket.send("Client Closed!")
+    // };
+    //
+    // socket.onerror = error => {
+    //     console.log("Socket Error: ", error);
+    // };
+    //
+    // function send(){
+    //     console.log(input.value)
+    //     socket.send(input.value)
+    //
+    // }
+
+
+    function jsonWS() {
+        var ws = new WebSocket("ws://localhost:8000/json");
+        // triggered when connection is opened
+        ws.onopen = function (evt) {
+           console.log("Connection open ...");
+           var obj = {a: "bb", b: 2};
+               ws.send(JSON.stringify(obj));
+        }
+        // triggered when a message is received
+        ws.onmessage = function (evt) {
+            console.log("Received Message: " + evt.data);
+            document.getElementById("message-json").innerText += evt.data;
+        };
+        // triggered when the connection is closed
+        ws.onclose = function (evt) {
+            console.log("Connection closed.");
+
+        }
+    }
+
+    function textWS() {
+       var ws = new WebSocket("ws://localhost:8000/text");
+       // triggered when connection is opened
+       ws.onopen = function (evt) {
+       console.log("Connection open ...");
+       ws.send("text message");
+       }
+       // triggered when a message is received
+       ws.onmessage = function (evt) {
+       console.log("Received Message: " + evt.data);
+       document.getElementById("message-text").innerText = evt.data;
+       };
+       // triggered when the connection is closed
+       ws.onclose = function (evt) {
+       console.log("Connection closed.");
+       }
+    }
+    // start websocket
+    jsonWS();
+    textWS();
+</script>
+</body>
+</html>
