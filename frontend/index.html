@@ -18,32 +18,6 @@
 </div>
 
 <script>
-    // let socket = new WebSocket("ws://127.0.0.1:8080/echo");
-    // console.log("Attempting Connection...");
-    //
-    // socket.onopen = () => {
-    //     console.log("Successfully Connected");
-    //     socket.send("Hi From the Client!")
-    // };
-    // socket.onmessage = ev => {
-    //     console.log("from on message ==> ",ev.data)
-    // }
-    //
-    // socket.onclose = event => {
-    //     console.log("Socket Closed Connection: ", event.data);
-    //     socket.send("Client Closed!")
-    // };
-    //
-    // socket.onerror = error => {
-    //     console.log("Socket Error: ", error);
-    // };
-    //
-    // function send(){
-    //     console.log(input.value)
-    //     socket.send(input.value)
-    //
-    // }
-
 
     function jsonWS() {
         var ws = new WebSocket("ws://localhost:8000/json");
